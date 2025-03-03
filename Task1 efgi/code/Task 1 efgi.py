@@ -4,10 +4,8 @@ import os
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
-# 组合出 dataset 目录下的正确路径
 file_path = os.path.join(script_dir, "../dataset/haunted_places.tsv")
 
-# 确保文件存在
 if not os.path.exists(file_path):
     print(f"Error: File '{file_path}' not found!")
 else:
@@ -86,7 +84,7 @@ df["state"] = df["state"].str.strip().str.title()
 
 daylight_data = {
     "state": ["California", "Texas", "Florida", "New York", "Illinois"],
-    "Avg Daylight Hours": [10.5, 9.8, 10.1, 9.2, 8.9]  # Example values
+    "Avg Daylight Hours": [10.5, 9.8, 10.1, 9.2, 8.9]  
 }
 
 daylight_df = pd.DataFrame(daylight_data)
@@ -101,11 +99,10 @@ df.to_csv(output_path, index=False)
 
 import pandas as pd
 
-# 显示 DataFrame（适用于 Jupyter Notebook 或某些终端支持）
 print("Processed Haunted Places Data:")
-print(df.head())  # 仅显示前 5 行数据
+print(df.head())  
 
-# 如果你希望将数据保存到文件
+
 output_path = "processed_haunted_places.csv"
 df.to_csv(output_path, index=False)
 
