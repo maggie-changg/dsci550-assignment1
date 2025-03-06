@@ -70,3 +70,5 @@ __pycache__/
 # Ignore virtual_documents (created by Jupyter LSP)
 .virtual_documents/
 
+.ipynb_checkpoints/
+.ipynb_checkpoints/
