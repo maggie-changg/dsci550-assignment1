@@ -1,6 +1,72 @@
 # macOS system files
 .DS_Store
 
-# Jupyter/VSCode virtual workspace
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments (Python venv, Anaconda env)
+venv/
+env/
+*.env
+
+# Anaconda Navigator project files
+anaconda_projects/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE/editor settings
+.vscode/
+*.swp
+*.swo
+*.idea/
+
+# Logs and temp files
+*.log
+*.out
+*.tmp
+
+# macOS system files
+.DS_Store
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments (Python venv, Anaconda env)
+venv/
+env/
+*.env
+
+# Anaconda Navigator project files
+anaconda_projects/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE/editor settings
+.vscode/
+*.swp
+*.swo
+*.idea/
+
+# Logs and temp files
+*.log
+*.out
+*.tmp
+
+# Sensitive files (if any, for safety)
+*.env
+*.secret
+
+# Data files (optional - only if you don't want to track big datasets)
+*.csv
+*.tsv
+*.json
+
+# Ignore virtual_documents (created by Jupyter LSP)
 .virtual_documents/
 
