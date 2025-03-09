@@ -1,0 +1,16 @@
+city
+country
+description
+location
+state
+state_abbrev
+longitude
+latitude
+city_longitude
+city_latitude
+Audio Evidence
+Image/Video/Visual Evidence
+Haunted Places Date
+Time of Day
+Apparition Type
+Event Type
