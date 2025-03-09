@@ -1,0 +1,6 @@
+[submodule "tika-similarity"]
+	path = tika-similarity
+	url = https://github.com/chrismattmann/tika-similarity.git
+[submodule "etllib"]
+	path = etllib
+	url = https://github.com/chrismattmann/etllib.git
