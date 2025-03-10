@@ -1,0 +1,10 @@
+Comparison: .ipynb_checkpoints vs haunted_place_1.json
+
+Comparison: haunted_place_1.json vs haunted_place_2.json
+
+Comparison: haunted_place_2.json vs haunted_place_3.json
+
+Comparison: haunted_place_3.json vs haunted_place_4.json
+
+Comparison: haunted_place_4.json vs haunted_place_5.json
+
