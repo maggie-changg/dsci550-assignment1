@@ -82,28 +82,90 @@ df["Event Type"] = df["description"].apply(categorize_event_type)
 df["state"] = df["state"].str.strip().str.title()
 
 
-daylight_data = {
-    "state": ["California", "Texas", "Florida", "New York", "Illinois"],
-    "Avg Daylight Hours": [10.5, 9.8, 10.1, 9.2, 8.9]  
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
 }
 
-daylight_df = pd.DataFrame(daylight_data)
+
+def fetch_timeanddate_daylight():
+    url = "https://www.timeanddate.com/astronomy/usa"
+    response = requests.get(url, headers=HEADERS)
+
+    if response.status_code != 200:
+        print(" Failed to fetch data from TimeAndDate website.")
+        return None
+
+    soup = BeautifulSoup(response.text, "html.parser")
+    table = soup.find("table", {"class": "tb-sm"}) 
+    if not table:
+        print(" No valid table found on TimeAndDate website.")
+        return None
+
+    data = []
+    for row in table.find_all("tr")[1:]: 
+        cols = row.find_all("td")
+        if len(cols) >= 3:
+            state = cols[0].text.strip()
+            daylight_hours = cols[2].text.strip().split(" ")[0]  
+            data.append({"state": state, "daylight_hours": daylight_hours})
+
+    return pd.DataFrame(data)
 
 
-df = df.merge(daylight_df, on="state", how="left")
+def fetch_navy_daylight_hours():
+    url = "https://aa.usno.navy.mil/data/Dur_OneYear"
+    response = requests.get(url, headers=HEADERS)
+
+    if response.status_code != 200:
+        print(" Failed to fetch data from US Naval Observatory.")
+        return None
+
+    soup = BeautifulSoup(response.text, "html.parser")
+    table = soup.find("table")
+    if not table:
+        print("No valid table found on US Naval Observatory website.")
+        return None
+
+    data = []
+    for row in table.find_all("tr")[1:]: 
+        cols = row.find_all("td")
+        if len(cols) >= 2:
+            state = cols[0].text.strip()
+            daylight_hours = cols[1].text.strip()
+            data.append({"state": state, "daylight_hours": daylight_hours})
+
+    return pd.DataFrame(data)
 
 
-output_path = "/mnt/data/processed_haunted_places.csv"
-df.to_csv(output_path, index=False)
+def merge_daylight_data():
+    print(" Fetching daylight duration data from Time and Date...")
+    timeanddate_df = fetch_timeanddate_daylight()
+    
+    print(" Fetching daylight duration data from US Naval Observatory...")
+    navy_df = fetch_navy_daylight_hours()
+    
+    if timeanddate_df is None and navy_df is None:
+        print(" Failed to process daylight data.")
+        return None
+    
+
+    daylight_data = pd.concat([timeanddate_df, navy_df], ignore_index=True).drop_duplicates(subset=["state"])
+
+    daylight_data["daylight_hours"] = pd.to_numeric(daylight_data["daylight_hours"], errors="coerce")
+    daylight_data["daylight_hours"].fillna(daylight_data["daylight_hours"].median(), inplace=True)
+
+    return daylight_data
+
+daylight_data = merge_daylight_data()
+if daylight_data is not None:
+    output_path = "processed_daylight_data.tsv"
+    daylight_data.to_csv(output_path, sep="\t", index=False)
+    print(f" Processing complete. Data saved to: {output_path}")
 
 
-import pandas as pd
 
-print("Processed Haunted Places Data:")
-print(df.head())  
-
-
-output_path = "processed_haunted_places.csv"
-df.to_csv(output_path, index=False)
-
-print("Processing complete. Data saved to:", output_path)
