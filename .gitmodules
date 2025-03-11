@@ -1,8 +1,8 @@
 [submodule "Task 6 - Tika-Similarity/tika-similarity"]
-    path = Task 6 - Tika-Similarity/tika-similarity
+	path = Task 6 - Tika-Similarity/downloads/tika-similarity
     url = https://github.com/chrismattmann/tika-similarity.git
 
 [submodule "Task 6 - Tika-Similarity/etllib"]
-    path = Task 6 - Tika-Similarity/etllib
+	path = Task 6 - Tika-Similarity/downloads/etllib
     url = https://github.com/chrismattmann/etllib.git
 t
