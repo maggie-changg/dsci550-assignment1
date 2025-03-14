@@ -59,8 +59,9 @@ We used **Apache Tika-Similarity** to compare haunted locations based on the fol
 ## Tasks Breakdown
 
 - **Jessica & Hengxiao**: Convert CSV to TSV and expand the dataset with additional features.
-- **Aaron & Eleanor**: Identify 3 additional datasets.
+- **Aaron & Eleanor**: Identify 3 additional datasets and join with the dataset.
 - **Tarun & Maggie**: Use Tika-Similarity to convert TSV to JSON and compare similarity metrics.
+- Each of us worked on the documentation of the report as well. 
 
 ---
 
