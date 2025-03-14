@@ -2,7 +2,7 @@
 Repository for DSCI 550 Group 2 </br>
 Collaborators: Eleanor Bi, Maggie Chang, Jessica Deng, Tarun Jagadish, Aaron Kuo, Hengxiao Zhu
 
-Project Overview
+Project Overview:
 This project is part of the USC DSCI 550 course and focuses on analyzing the Haunted Places dataset. We integrate Apache Tika and Tika-Similarity to explore patterns and characteristics of haunted locations using various data analysis techniques.
 
 Key Objectives:
