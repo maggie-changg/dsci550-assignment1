@@ -1,0 +1,8 @@
+pandas
+numpy
+matplotlib
+seaborn
+requests
+wikipedia-api
+datefinder
+geopandas
